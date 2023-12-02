@@ -11,12 +11,6 @@ type Game = {
 	rounds: Round[]
 }
 
-const target = {
-	red: 12,
-	green: 13, 
-	blue: 14
-}
-
 console.log(
 	input
 		.split('\n')
@@ -39,13 +33,13 @@ console.log(
 		.map(game => ({
 			id: game.id,
 			rounds: game.rounds
-				.reduce((acc, round) => {
-					acc.red = Math.max(round.red ?? 0, acc.red);
-					acc.green = Math.max(round.green ?? 0, acc.green);
-					acc.blue = Math.max(round.blue ?? 0, acc.blue);
-					return acc;
-				}, { red: 0, green: 0, blue: 0 })
+			.reduce((acc, round) => {
+				acc.red = Math.max(round.red ?? 0, acc.red);
+				acc.green = Math.max(round.green ?? 0, acc.green);
+				acc.blue = Math.max(round.blue ?? 0, acc.blue);
+				return acc;
+			}, { red: 0, green: 0, blue: 0 })
 		}))
-		.filter(game => game.rounds.red <= target.red && game.rounds.green <= target.green && game.rounds.blue <= target.blue)
-		.reduce((acc, game) => acc + game.id, 0)
+		.map(game => game.rounds.red * game.rounds.green * game.rounds.blue)
+		.reduce((acc, power) => acc + power, 0)
 )
