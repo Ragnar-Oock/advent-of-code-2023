@@ -6,4 +6,6 @@
 // import './day 2/part2'
 
 // import './day 3/part1'
-import './day 3/part2'
+// import './day 3/part2'
+
+import './day 4/part1'
